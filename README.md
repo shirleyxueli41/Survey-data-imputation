@@ -1,13 +1,15 @@
 # DAP survey data imputation
+Material is written based on the github repo Autocomplete and a paper published in nature genetics. 
 https://github.com/sriramlab/AutoComplete/tree/master
+
+https://www.nature.com/articles/s41588-023-01558-w
 
 AutoComplete is a deep-learning based imputation method capable of imputing continuous and binary values simultaneously.
 
 ## Getting Started
 
 AutoComplete can run with most Python 3 versions, and defines neural nets using [pytorch](https://pytorch.org).
-The dependencies can be found in `requirements.txt` and installed using:
-https://github.com/sriramlab/AutoComplete/tree/master
+The dependencies can be found in `requirements.txt`
 
 ### Download the following scripts to your working directory and load Python
 ```
@@ -22,8 +24,7 @@ use Python-3.9
 
 
 
-## Imputation Demo
-
+## Imputation Demo: hyperparameter tuning
 
 An example procedure for training, testing, and scoring an example survey dataset with missing values. 
 
@@ -36,7 +37,7 @@ This script also split the data into training/fitting set and testing set.
 
 ```bash
 python s1_phenotype_missingness_simulation.py \
---data_file example_survey_data.tsv \
+--data_file example_survey_data.csv \
 --id_name dog_id \
 --simulate_missing 0.05 \
 --output example_survey_data.MR  # The prefix of the two output files.
@@ -77,10 +78,37 @@ There are also two other statistics added. (1) F1 (2) Imputation accuracy.
 
 ```bash
 python s3_bootstrap_r2_statistic.py \
-    --data_file example_survey_data.tsv \
+    --data_file example_survey_data.csv \
     --id_name dog_id \
     --simulated_data_file example_survey_data.MR.test.csv \
     --imputed_data_file example_survey_data.MR.test_imputed.csv \
     --num_bootstraps 10 \
     --saveas result_r2_phenotype_demo.csv
+```
+
+
+
+## Apply the model to the real dataset after hyperparameter tuning.
+Note: We don't need to introduce missing data, so no need to run s1_phenotype_missingness_simulation.py 
+
+### Generate a model based on the data itself with the best parameter identified from "hyperparameter tuning" step. 
+```bash
+python s2_fit.py \
+    --data_file example_survey_data.csv \
+    --id_name dog_id \
+    --save_model_path myfinalmodel.pth \
+    --batch_size 2048 \
+    --epochs 50 \
+    --device cpu:0
+```
+
+### Apply the model back to the data
+```bash
+python s2_fit.py \
+    --data_file example_survey_data.csv \
+    --id_name dog_id \
+    --impute_using_saved myfinalmodel.pth  \
+    --impute_data_file example_survey_data.csv \
+    --output example_survey_data_imputed.csv \
+    --device cpu:0
 ```
