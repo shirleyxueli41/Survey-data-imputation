@@ -24,8 +24,7 @@ use Python-3.9
 
 
 
-## Imputation Demo
-
+## Imputation Demo: hyperparameter tuning
 
 An example procedure for training, testing, and scoring an example survey dataset with missing values. 
 
@@ -85,4 +84,31 @@ python s3_bootstrap_r2_statistic.py \
     --imputed_data_file example_survey_data.MR.test_imputed.csv \
     --num_bootstraps 10 \
     --saveas result_r2_phenotype_demo.csv
+```
+
+
+
+## Apply the model to the real dataset after hyperparameter tuning.
+Note: We don't need to introduce missing data, so no need to run s1_phenotype_missingness_simulation.py 
+
+### Generate a model based on the data itself with the best parameter identified from "hyperparameter tuning" step. 
+```bash
+python s2_fit.py \
+    --data_file example_survey_data.csv \
+    --id_name dog_id \
+    --save_model_path myfinalmodel.pth \
+    --batch_size 2048 \
+    --epochs 50 \
+    --device cpu:0
+```
+
+### Apply the model back to the data
+```bash
+python s2_fit.py \
+    --data_file example_survey_data.csv \
+    --id_name dog_id \
+    --impute_using_saved myfinalmodel.pth  \
+    --impute_data_file example_survey_data.csv \
+    --output example_survey_data_imputed.csv \
+    --device cpu:0
 ```
