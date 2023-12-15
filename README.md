@@ -46,7 +46,7 @@ python s1_phenotype_missingness_simulation.py \
 ```
 
 ### Step Two
-The method is fit to a training/fitting split of the data saved to `example_survey_data.MR.fit.csv`.
+The method is trained/fitted on a training/fitting split of the data saved to `example_survey_data.MR.fit.csv`.
 ```bash
 python s2_fit.py \
     --data_file example_survey_data.MR.fit.csv \
@@ -58,7 +58,6 @@ python s2_fit.py \
 ```
 
 The fitted model is used to impute the testing split of the data which is `example_survey_data.MR.test.csv`.
-
 ```bash
 python s2_fit.py \
     --data_file example_survey_data.MR.fit.csv \
@@ -68,8 +67,9 @@ python s2_fit.py \
     --output example_survey_data.MR.test_imputed.csv \
     --device cpu:0
 ```
-Note: --data_file This can't be removed, but this doesn't influence the result either. Because fitting and testing are written in the same script, when we ask the script to do tesing, the fitting section can't be silenced, the script has to go through the code that does the fitting and then go the testing section. 
+Note: "--data_file" This can't be removed, but this doesn't influence the result either. Because fitting and testing are written in the same script, when we ask the script to do tesing, the fitting section can't be silenced, the script has to go through the code that does the fitting and then go the testing section. 
 
+### Step Three
 Finally, the simulated missing values are scored against their originally observed values. The Pearson's r^2 correlation is used and a number of bootstrap replicates are used to obtain the point estimate of the accuracy and its standard error.
 There are also two other statistics added. (1) F1 (2) Imputation accuracy. 
 
