@@ -37,7 +37,7 @@ This script also split the data into training/fitting set and testing set.
 
 ```bash
 python s1_phenotype_missingness_simulation.py \
---data_file example_survey_data.tsv \
+--data_file example_survey_data.csv \
 --id_name dog_id \
 --simulate_missing 0.05 \
 --output example_survey_data.MR  # The prefix of the two output files.
@@ -78,7 +78,7 @@ There are also two other statistics added. (1) F1 (2) Imputation accuracy.
 
 ```bash
 python s3_bootstrap_r2_statistic.py \
-    --data_file example_survey_data.tsv \
+    --data_file example_survey_data.csv \
     --id_name dog_id \
     --simulated_data_file example_survey_data.MR.test.csv \
     --imputed_data_file example_survey_data.MR.test_imputed.csv \
