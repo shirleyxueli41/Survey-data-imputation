@@ -92,7 +92,7 @@ python s3_bootstrap_r2_statistic.py \
 Note: We don't need to introduce missing data, so no need to run s1_phenotype_missingness_simulation.py
 
 
-Generate a model based on the data itself with the best parameter identified from "hyperparameter tuning" step. 
+Generate a model based on the data itself with the best parameter identified from "hyperparameter tuning" step. Ex: epoch is now set to 50 (assuming 50 is the best epoch we got from last section). 
 ```bash
 python s2_fit.py \
     --data_file example_survey_data.csv \
