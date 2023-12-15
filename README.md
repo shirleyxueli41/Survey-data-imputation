@@ -1,13 +1,14 @@
 # DAP survey data imputation
+Material is written based on the github repo Autocomplete and a paper published in nature genetics. 
 https://github.com/sriramlab/AutoComplete/tree/master
+https://www.nature.com/articles/s41588-023-01558-w
 
 AutoComplete is a deep-learning based imputation method capable of imputing continuous and binary values simultaneously.
 
 ## Getting Started
 
 AutoComplete can run with most Python 3 versions, and defines neural nets using [pytorch](https://pytorch.org).
-The dependencies can be found in `requirements.txt` and installed using:
-https://github.com/sriramlab/AutoComplete/tree/master
+The dependencies can be found in `requirements.txt`
 
 ### Download the following scripts to your working directory and load Python
 ```
