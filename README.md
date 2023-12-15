@@ -89,9 +89,10 @@ python s3_bootstrap_r2_statistic.py \
 
 
 ## Apply the model to the real dataset after hyperparameter tuning.
-Note: We don't need to introduce missing data, so no need to run s1_phenotype_missingness_simulation.py 
+Note: We don't need to introduce missing data, so no need to run s1_phenotype_missingness_simulation.py
 
-### Generate a model based on the data itself with the best parameter identified from "hyperparameter tuning" step. 
+
+Generate a model based on the data itself with the best parameter identified from "hyperparameter tuning" step. 
 ```bash
 python s2_fit.py \
     --data_file example_survey_data.csv \
@@ -102,7 +103,8 @@ python s2_fit.py \
     --device cpu:0
 ```
 
-### Apply the model back to the data
+Apply the model back to the data, `example_survey_data_imputed.csv` will be the final result after imputation. 
+
 ```bash
 python s2_fit.py \
     --data_file example_survey_data.csv \
@@ -112,3 +114,4 @@ python s2_fit.py \
     --output example_survey_data_imputed.csv \
     --device cpu:0
 ```
+Note: The model learn from the dataset and then be applied back to the dataset. That's how autoencoder works. This will not cause overfitting. 
