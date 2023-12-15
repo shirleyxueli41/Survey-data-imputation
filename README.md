@@ -14,6 +14,8 @@ https://github.com/sriramlab/AutoComplete/tree/master
 s1_phenotype_missingness_simulation.py
 s2_fit.py
 s3_bootstrap_r2_statistic.py
+ac.py*
+dataset.py*
 
 use Python-3.9
 ```
