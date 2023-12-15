@@ -115,3 +115,4 @@ python s2_fit.py \
     --device cpu:0
 ```
 Note: The model learn from the dataset and then be applied back to the dataset. That's how autoencoder works. This will not cause overfitting. 
+From Wikipedia: An autoencoder is a type of artificial neural network used to learn efficient codings of unlabeled data (unsupervised learning). An autoencoder learns two functions: an encoding function that transforms the input data, and a decoding function that recreates the input data from the encoded representation.
