@@ -26,8 +26,8 @@ use Python-3.9
 ```bash
 use UGER
 ish -l h_vmem=20g
-pip3 install torch==1.8.1+cpu torchvision==0.9.1+cpu torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
-pip3 install --upgrade torch torchvision
+pip3 install torch==1.10.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
+# pip3 install --upgrade torch 
 ```
 
 
