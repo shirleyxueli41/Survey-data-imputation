@@ -12,7 +12,7 @@ AutoComplete can run with most Python 3 versions, and defines neural nets using 
 The dependencies can be found in `requirements.txt`
 
 ### Download the following scripts to your working directory and load Python
-```
+```bash
 s1_phenotype_missingness_simulation.py
 s2_fit.py
 s3_bootstrap_r2_statistic.py
@@ -21,6 +21,7 @@ dataset.py*
 
 use Python-3.9
 ```
+
 ### Install torch on Broad server
 ```bash
 use UGER
