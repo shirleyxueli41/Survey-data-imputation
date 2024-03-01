@@ -1,8 +1,10 @@
-# DAP survey data imputation
-Material is written based on the github repo Autocomplete and a paper published in nature genetics. 
-https://github.com/sriramlab/AutoComplete/tree/master
+Date: 2023-12      
+Usage: A demo for DAP survey data imputation       
+[Dog Aging Project Survey Instrument](https://github.com/dogagingproject/dataRelease/tree/master/Survey_Instruments)       
 
-https://www.nature.com/articles/s41588-023-01558-w
+# DAP survey data imputation
+Material is written based on the github repo [Autocomplete](https://github.com/sriramlab/AutoComplete/tree/master) and the paper [Deep learning-based phenotype imputation on population-scale biobank data increases genetic discoveries](https://www.nature.com/articles/s41588-023-01558-w) published in nature genetics. 
+
 
 AutoComplete is a deep-learning based imputation method capable of imputing continuous and binary values simultaneously.
 
@@ -77,7 +79,9 @@ python s2_fit.py \
     --output example_survey_data.MR.test_imputed.csv \
     --device cpu:0
 ```
-Note: "--data_file" This can't be removed, but this doesn't influence the result either. Because fitting and testing are written in the same script, when we ask the script to do tesing, the fitting section can't be silenced, the script has to go through the code that does the fitting and then go the testing section. 
+> [!NOTE]
+> * "--data_file" This can't be removed, but this doesn't influence the result either.        
+> * Because fitting and testing are written in the same script, when we ask the script to do tesing, the fitting section can't be silenced, the script has to go through the code that does the fitting and then go the testing section. 
 
 ### Step Three
 Finally, the simulated missing values are scored against their originally observed values. The Pearson's r^2 correlation is used and a number of bootstrap replicates are used to obtain the point estimate of the accuracy and its standard error.
@@ -96,7 +100,8 @@ python s3_bootstrap_r2_statistic.py \
 
 
 ## Apply the model to the real dataset after hyperparameter tuning.
-Note: We don't need to introduce missing data, so no need to run s1_phenotype_missingness_simulation.py
+> [!NOTE]\
+> We don't need to introduce missing data, so no need to run s1_phenotype_missingness_simulation.py
 
 
 Generate a model based on the data itself with the best parameter identified from "hyperparameter tuning" step. Ex: epoch is now set to 50 (assuming 50 is the best epoch we got from last section). 
@@ -121,6 +126,7 @@ python s2_fit.py \
     --output example_survey_data_imputed.csv \
     --device cpu:0
 ```
-Note: The model learn from the dataset and then be applied back to the dataset. That's how autoencoder works. This will not cause overfitting. 
+> [!NOTE]
+> The model learn from the dataset and then be applied back to the dataset. That's how autoencoder works. This will not cause overfitting. 
 
 From Wikipedia: An autoencoder is a type of artificial neural network used to learn efficient codings of unlabeled data (unsupervised learning). An autoencoder learns two functions: an encoding function that transforms the input data, and a decoding function that recreates the input data from the encoded representation.
